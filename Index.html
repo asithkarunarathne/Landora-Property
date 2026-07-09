@@ -1,0 +1,778 @@
+
+# Create the complete Landora Properties website files
+# I'll create all three files: index.html, style.css, and script.js
+
+html_content = '''<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Landora Properties - Discover Your Dream Property in Sri Lanka. Buy, Sell & Rent Houses, Lands and Commercial Properties.">
+    <meta name="keywords" content="real estate, Sri Lanka, property, houses, lands, apartments, commercial, rent, buy">
+    <title>Landora Properties | Discover Your Dream Property</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="logo">
+                <span class="logo-icon"><i class="fas fa-landmark"></i></span>
+                <span class="logo-text">LANDORA <span class="logo-accent">PROPERTIES</span></span>
+            </a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#properties" class="nav-link">Properties</a></li>
+                <li><a href="#categories" class="nav-link">Categories</a></li>
+                <li><a href="#listings" class="nav-link">Listings</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li class="nav-cta"><a href="#advertise" class="btn btn-primary">Post Property</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="btn-favorite" id="btnFavorite" title="Favorites">
+                    <i class="fas fa-heart"></i>
+                    <span class="fav-count" id="favCount">0</span>
+                </button>
+                <button class="btn-login" id="btnLogin">Login</button>
+                <button class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">Find Your Perfect Property With <span class="highlight">Landora Properties</span></h1>
+            <p class="hero-subtitle">Buy, Sell & Rent Houses, Lands and Commercial Properties Across Sri Lanka</p>
+            <div class="hero-buttons">
+                <a href="#listings" class="btn btn-gold btn-lg"><i class="fas fa-search"></i> Search Properties</a>
+                <a href="#advertise" class="btn btn-outline btn-lg"><i class="fas fa-plus-circle"></i> Advertise Your Property</a>
+            </div>
+        </div>
+        
+        <!-- Advanced Search Box -->
+        <div class="search-box-container">
+            <div class="search-box">
+                <h3 class="search-title"><i class="fas fa-search-location"></i> Find Your Property</h3>
+                <form class="search-form" id="searchForm">
+                    <div class="search-field">
+                        <label><i class="fas fa-map-marker-alt"></i> Location</label>
+                        <select id="searchLocation">
+                            <option value="">All Locations</option>
+                            <option value="colombo">Colombo</option>
+                            <option value="galle">Galle</option>
+                            <option value="kandy">Kandy</option>
+                            <option value="negombo">Negombo</option>
+                            <option value="jaffna">Jaffna</option>
+                            <option value="matara">Matara</option>
+                            <option value="anuradhapura">Anuradhapura</option>
+                            <option value="nuwara-eliya">Nuwara Eliya</option>
+                        </select>
+                    </div>
+                    <div class="search-field">
+                        <label><i class="fas fa-home"></i> Property Type</label>
+                        <select id="searchType">
+                            <option value="">All Types</option>
+                            <option value="house">House</option>
+                            <option value="land">Land</option>
+                            <option value="apartment">Apartment</option>
+                            <option value="commercial">Commercial</option>
+                            <option value="villa">Villa</option>
+                        </select>
+                    </div>
+                    <div class="search-field">
+                        <label><i class="fas fa-handshake"></i> Purpose</label>
+                        <select id="searchPurpose">
+                            <option value="">Any Purpose</option>
+                            <option value="buy">Buy</option>
+                            <option value="rent">Rent</option>
+                        </select>
+                    </div>
+                    <div class="search-field">
+                        <label><i class="fas fa-tag"></i> Price Range</label>
+                        <select id="searchPrice">
+                            <option value="">Any Price</option>
+                            <option value="0-5000000">Under LKR 5M</option>
+                            <option value="5000000-15000000">LKR 5M - 15M</option>
+                            <option value="15000000-30000000">LKR 15M - 30M</option>
+                            <option value="30000000-50000000">LKR 30M - 50M</option>
+                            <option value="50000000+">Above LKR 50M</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-search"><i class="fas fa-search"></i> Search</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Properties Section -->
+    <section class="featured" id="properties">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Premium Selection</span>
+                <h2 class="section-title">Featured Properties</h2>
+                <p class="section-desc">Handpicked premium properties across Sri Lanka</p>
+            </div>
+            <div class="featured-grid" id="featuredGrid">
+                <!-- Featured properties will be injected by JS -->
+            </div>
+            <div class="text-center mt-4">
+                <a href="#listings" class="btn btn-primary">View All Properties</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-icon"><i class="fas fa-building"></i></div>
+                    <div class="stat-number" data-target="2500">0</div>
+                    <div class="stat-label">Properties Listed</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon"><i class="fas fa-users"></i></div>
+                    <div class="stat-number" data-target="15000">0</div>
+                    <div class="stat-label">Happy Clients</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon"><i class="fas fa-handshake"></i></div>
+                    <div class="stat-number" data-target="3200">0</div>
+                    <div class="stat-label">Deals Closed</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon"><i class="fas fa-map-marked-alt"></i></div>
+                    <div class="stat-number" data-target="25">0</div>
+                    <div class="stat-label">Cities Covered</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Property Categories Section -->
+    <section class="categories" id="categories">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Browse By Type</span>
+                <h2 class="section-title">Property Categories</h2>
+                <p class="section-desc">Explore properties by category</p>
+            </div>
+            <div class="categories-grid">
+                <div class="category-card" data-category="house">
+                    <div class="category-img">
+                        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=400&h=300&fit=crop" alt="Houses For Sale">
+                    </div>
+                    <div class="category-overlay"></div>
+                    <div class="category-content">
+                        <div class="category-icon"><i class="fas fa-home"></i></div>
+                        <h3>Houses For Sale</h3>
+                        <p>1,240 Properties</p>
+                        <span class="category-arrow"><i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </div>
+                <div class="category-card" data-category="land">
+                    <div class="category-img">
+                        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=400&h=300&fit=crop" alt="Lands For Sale">
+                    </div>
+                    <div class="category-overlay"></div>
+                    <div class="category-content">
+                        <div class="category-icon"><i class="fas fa-tree"></i></div>
+                        <h3>Lands For Sale</h3>
+                        <p>856 Properties</p>
+                        <span class="category-arrow"><i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </div>
+                <div class="category-card" data-category="commercial">
+                    <div class="category-img">
+                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&h=300&fit=crop" alt="Commercial Properties">
+                    </div>
+                    <div class="category-overlay"></div>
+                    <div class="category-content">
+                        <div class="category-icon"><i class="fas fa-building"></i></div>
+                        <h3>Commercial Properties</h3>
+                        <p>432 Properties</p>
+                        <span class="category-arrow"><i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </div>
+                <div class="category-card" data-category="apartment">
+                    <div class="category-img">
+                        <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=400&h=300&fit=crop" alt="Apartments">
+                    </div>
+                    <div class="category-overlay"></div>
+                    <div class="category-content">
+                        <div class="category-icon"><i class="fas fa-city"></i></div>
+                        <h3>Apartments</h3>
+                        <p>678 Properties</p>
+                        <span class="category-arrow"><i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </div>
+                <div class="category-card" data-category="rental">
+                    <div class="category-img">
+                        <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&h=300&fit=crop" alt="Property Rentals">
+                    </div>
+                    <div class="category-overlay"></div>
+                    <div class="category-content">
+                        <div class="category-icon"><i class="fas fa-key"></i></div>
+                        <h3>Property Rentals</h3>
+                        <p>294 Properties</p>
+                        <span class="category-arrow"><i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest Listings Section -->
+    <section class="listings" id="listings">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">New Arrivals</span>
+                <h2 class="section-title">Latest Property Listings</h2>
+                <p class="section-desc">Discover the newest properties on the market</p>
+            </div>
+            
+            <!-- Filters -->
+            <div class="listings-filters">
+                <div class="filter-group">
+                    <select id="filterLocation" class="filter-select">
+                        <option value="">All Locations</option>
+                        <option value="colombo">Colombo</option>
+                        <option value="galle">Galle</option>
+                        <option value="kandy">Kandy</option>
+                        <option value="negombo">Negombo</option>
+                        <option value="jaffna">Jaffna</option>
+                        <option value="matara">Matara</option>
+                    </select>
+                    <select id="filterCategory" class="filter-select">
+                        <option value="">All Categories</option>
+                        <option value="house">House</option>
+                        <option value="land">Land</option>
+                        <option value="apartment">Apartment</option>
+                        <option value="commercial">Commercial</option>
+                        <option value="villa">Villa</option>
+                    </select>
+                    <select id="filterMinPrice" class="filter-select">
+                        <option value="">Min Price</option>
+                        <option value="0">LKR 0</option>
+                        <option value="5000000">LKR 5M</option>
+                        <option value="10000000">LKR 10M</option>
+                        <option value="20000000">LKR 20M</option>
+                        <option value="50000000">LKR 50M</option>
+                    </select>
+                    <select id="filterMaxPrice" class="filter-select">
+                        <option value="">Max Price</option>
+                        <option value="10000000">LKR 10M</option>
+                        <option value="20000000">LKR 20M</option>
+                        <option value="50000000">LKR 50M</option>
+                        <option value="100000000">LKR 100M</option>
+                        <option value="999999999">No Limit</option>
+                    </select>
+                    <select id="filterBedrooms" class="filter-select">
+                        <option value="">Bedrooms</option>
+                        <option value="1">1+</option>
+                        <option value="2">2+</option>
+                        <option value="3">3+</option>
+                        <option value="4">4+</option>
+                        <option value="5">5+</option>
+                    </select>
+                </div>
+                <div class="sort-group">
+                    <span>Sort by:</span>
+                    <select id="sortBy" class="filter-select">
+                        <option value="newest">Newest First</option>
+                        <option value="price-asc">Price: Low to High</option>
+                        <option value="price-desc">Price: High to Low</option>
+                        <option value="popular">Most Popular</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="listings-grid" id="listingsGrid">
+                <!-- Listings will be injected by JS -->
+            </div>
+            
+            <div class="listings-pagination">
+                <button class="btn btn-outline" id="loadMoreBtn">Load More Properties</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Advertise CTA Section -->
+    <section class="advertise-cta" id="advertise">
+        <div class="advertise-bg">
+            <div class="advertise-overlay"></div>
+        </div>
+        <div class="advertise-content">
+            <div class="advertise-icon"><i class="fas fa-bullhorn"></i></div>
+            <h2>Have a Property to Sell or Rent?</h2>
+            <p>Advertise with Landora Properties and reach thousands of potential buyers and renters across Sri Lanka.</p>
+            <div class="advertise-features">
+                <div class="adv-feature"><i class="fas fa-check-circle"></i> Free Listing</div>
+                <div class="adv-feature"><i class="fas fa-check-circle"></i> Wide Reach</div>
+                <div class="adv-feature"><i class="fas fa-check-circle"></i> Verified Buyers</div>
+                <div class="adv-feature"><i class="fas fa-check-circle"></i> 24/7 Support</div>
+            </div>
+            <a href="#" class="btn btn-gold btn-lg" id="postPropertyBtn"><i class="fas fa-plus-circle"></i> Post Your Property</a>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="why-us">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Our Advantages</span>
+                <h2 class="section-title">Why Choose Landora Properties</h2>
+                <p class="section-desc">We provide the best real estate experience in Sri Lanka</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h3>Verified Listings</h3>
+                    <p>All properties are verified by our team to ensure authenticity and accuracy.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-headset"></i></div>
+                    <h3>Expert Support</h3>
+                    <p>Our dedicated team is available 24/7 to assist you with your property needs.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Market Insights</h3>
+                    <p>Get access to the latest market trends and property valuations in Sri Lanka.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-handshake"></i></div>
+                    <h3>Trusted Partners</h3>
+                    <p>We work with the most reputable agents and developers in the country.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&h=500&fit=crop" alt="Landora Properties Office">
+                    <div class="about-experience">
+                        <span class="exp-number">10+</span>
+                        <span class="exp-text">Years of<br>Excellence</span>
+                    </div>
+                </div>
+                <div class="about-content">
+                    <span class="section-tag">About Us</span>
+                    <h2>Your Trusted Real Estate Partner in Sri Lanka</h2>
+                    <p>Landora Properties is a modern property advertising platform connecting buyers, sellers, and investors with valuable real estate opportunities throughout Sri Lanka.</p>
+                    <p>With over a decade of experience, we have helped thousands of families find their dream homes and assisted countless property owners in selling or renting their assets at the best prices.</p>
+                    <div class="about-features">
+                        <div class="about-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Extensive property database</span>
+                        </div>
+                        <div class="about-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Professional property valuation</span>
+                        </div>
+                        <div class="about-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Legal assistance & documentation</span>
+                        </div>
+                        <div class="about-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Flexible payment options</span>
+                        </div>
+                    </div>
+                    <a href="#contact" class="btn btn-primary">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Testimonials</span>
+                <h2 class="section-title">What Our Clients Say</h2>
+                <p class="section-desc">Real stories from real people</p>
+            </div>
+            <div class="testimonials-slider" id="testimonialsSlider">
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Landora Properties helped us find our dream home in Colombo within just two weeks. The team was professional, responsive, and truly understood our needs."</p>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face" alt="Client">
+                        <div>
+                            <h4>Rajitha Fernando</h4>
+                            <span>Colombo</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"I listed my commercial property and received multiple inquiries within days. The platform is easy to use and the support team is excellent."</p>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop&crop=face" alt="Client">
+                        <div>
+                            <h4>Amara Silva</h4>
+                            <span>Galle</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="testimonial-text">"As an investor, I appreciate the detailed property information and market insights provided by Landora. It helps me make informed decisions."</p>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&crop=face" alt="Client">
+                        <div>
+                            <h4>Dinesh Perera</h4>
+                            <span>Kandy</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Get In Touch</span>
+                <h2 class="section-title">Contact Us</h2>
+                <p class="section-desc">We'd love to hear from you</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
+                        <h3>Phone</h3>
+                        <p>+94 11 234 5678</p>
+                        <p>+94 77 123 4567</p>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                        <h3>Email</h3>
+                        <p>info@landoraproperties.lk</p>
+                        <p>support@landoraproperties.lk</p>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <h3>Address</h3>
+                        <p>No. 45, Galle Road,</p>
+                        <p>Colombo 03, Sri Lanka</p>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
+                        <h3>WhatsApp</h3>
+                        <p>+94 77 123 4567</p>
+                        <a href="https://wa.me/94771234567" target="_blank" class="whatsapp-link">Chat on WhatsApp</a>
+                    </div>
+                </div>
+                <div class="contact-form-wrapper">
+                    <form class="contact-form" id="contactForm">
+                        <h3>Send Us a Message</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>First Name</label>
+                                <input type="text" id="firstName" placeholder="Your first name" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Last Name</label>
+                                <input type="text" id="lastName" placeholder="Your last name" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" id="email" placeholder="your@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone</label>
+                            <input type="tel" id="phone" placeholder="+94 XX XXX XXXX">
+                        </div>
+                        <div class="form-group">
+                            <label>Subject</label>
+                            <select id="subject">
+                                <option>General Inquiry</option>
+                                <option>Property Listing</option>
+                                <option>Buy Property</option>
+                                <option>Rent Property</option>
+                                <option>Partnership</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Message</label>
+                            <textarea id="message" rows="5" placeholder="Your message..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block"><i class="fas fa-paper-plane"></i> Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-brand">
+                        <a href="#home" class="footer-logo">
+                            <span class="logo-icon"><i class="fas fa-landmark"></i></span>
+                            <span class="logo-text">LANDORA <span class="logo-accent">PROPERTIES</span></span>
+                        </a>
+                        <p>Your trusted partner in finding the perfect property in Sri Lanka. We connect buyers, sellers, and investors with premium real estate opportunities.</p>
+                        <div class="footer-social">
+                            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                    <div class="footer-links">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#properties">Properties</a></li>
+                            <li><a href="#categories">Categories</a></li>
+                            <li><a href="#about">About Us</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-links">
+                        <h4>Property Categories</h4>
+                        <ul>
+                            <li><a href="#">Houses For Sale</a></li>
+                            <li><a href="#">Lands For Sale</a></li>
+                            <li><a href="#">Apartments</a></li>
+                            <li><a href="#">Commercial Properties</a></li>
+                            <li><a href="#">Property Rentals</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-links">
+                        <h4>Support</h4>
+                        <ul>
+                            <li><a href="#">Help Center</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Terms of Service</a></li>
+                            <li><a href="#">FAQ</a></li>
+                            <li><a href="#">Sitemap</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2024 Landora Properties. All Rights Reserved. | Designed with <i class="fas fa-heart"></i> in Sri Lanka</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Property Details Modal -->
+    <div class="modal" id="propertyModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose"><i class="fas fa-times"></i></button>
+            <div class="modal-body" id="modalBody">
+                <!-- Property details injected by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content modal-sm">
+            <button class="modal-close" id="loginModalClose"><i class="fas fa-times"></i></button>
+            <div class="modal-body">
+                <div class="auth-tabs">
+                    <button class="auth-tab active" data-tab="login">Login</button>
+                    <button class="auth-tab" data-tab="register">Register</button>
+                </div>
+                <div class="auth-content" id="loginContent">
+                    <form class="auth-form" id="loginForm">
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" placeholder="your@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" placeholder="Your password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Login</button>
+                        <p class="auth-note">Don't have an account? <a href="#" class="switch-tab" data-tab="register">Register</a></p>
+                    </form>
+                </div>
+                <div class="auth-content hidden" id="registerContent">
+                    <form class="auth-form" id="registerForm">
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" placeholder="Your full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" placeholder="your@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone</label>
+                            <input type="tel" placeholder="+94 XX XXX XXXX" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" placeholder="Create password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+                        <p class="auth-note">Already have an account? <a href="#" class="switch-tab" data-tab="login">Login</a></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Post Property Modal -->
+    <div class="modal" id="postPropertyModal">
+        <div class="modal-content modal-lg">
+            <button class="modal-close" id="postModalClose"><i class="fas fa-times"></i></button>
+            <div class="modal-body">
+                <h2 class="modal-title">Post Your Property</h2>
+                <form class="post-form" id="postForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Property Title</label>
+                            <input type="text" placeholder="e.g., Luxury Villa in Colombo" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Property Type</label>
+                            <select required>
+                                <option value="">Select Type</option>
+                                <option value="house">House</option>
+                                <option value="land">Land</option>
+                                <option value="apartment">Apartment</option>
+                                <option value="commercial">Commercial</option>
+                                <option value="villa">Villa</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Purpose</label>
+                            <select required>
+                                <option value="">Select Purpose</option>
+                                <option value="sale">For Sale</option>
+                                <option value="rent">For Rent</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Location</label>
+                            <select required>
+                                <option value="">Select Location</option>
+                                <option value="colombo">Colombo</option>
+                                <option value="galle">Galle</option>
+                                <option value="kandy">Kandy</option>
+                                <option value="negombo">Negombo</option>
+                                <option value="jaffna">Jaffna</option>
+                                <option value="matara">Matara</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Price (LKR)</label>
+                            <input type="number" placeholder="e.g., 25000000" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Land Size (perches)</label>
+                            <input type="number" placeholder="e.g., 10" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Bedrooms</label>
+                            <input type="number" placeholder="e.g., 3" min="0">
+                        </div>
+                        <div class="form-group">
+                            <label>Bathrooms</label>
+                            <input type="number" placeholder="e.g., 2" min="0">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea rows="4" placeholder="Describe your property..." required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Property Images</label>
+                        <div class="file-upload" id="fileUpload">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>Drag & drop images here or click to browse</p>
+                            <span>Supports: JPG, PNG (Max 5MB each)</span>
+                            <input type="file" multiple accept="image/*" id="propertyImages">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block"><i class="fas fa-paper-plane"></i> Submit Listing</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Favorites Drawer -->
+    <div class="drawer" id="favoritesDrawer">
+        <div class="drawer-header">
+            <h3><i class="fas fa-heart"></i> My Favorites</h3>
+            <button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="drawer-body" id="favoritesBody">
+            <p class="drawer-empty">No favorites yet. Start browsing properties!</p>
+        </div>
+    </div>
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Success!</span>
+    </div>
+
+    <!-- Scroll to Top -->
+    <button class="scroll-top" id="scrollTop"><i class="fas fa-chevron-up"></i></button>
+
+    <script src="script.js"></script>
+</body>
+</html>'''
+
+with open('/mnt/agents/output/index.html', 'w', encoding='utf-8') as f:
+    f.write(html_content)
+
+print("index.html created successfully!")
+print(f"File size: {len(html_content)} characters")
